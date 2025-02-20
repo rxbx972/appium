@@ -41,16 +41,6 @@ searchBox = driver.find_element(by=AppiumBy.ID, value='com.google.android.youtub
 searchBox.send_keys("blackpink") 
 driver.press_keycode(66)
 
-# 검색결과 노출될 때까지 대기
-result_goToChannelButton = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Go to channel')
-# driver.find_element(by=AppiumBy.XPATH, value=xpath)
-# WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
-
-# wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-# WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-# element:WebElement = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-print("검색결과 노출")
-
 # 몇 초 대기 후 종료
 time.sleep(5)
 driver.quit()

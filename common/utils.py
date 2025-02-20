@@ -9,5 +9,5 @@ with open('config/youtubeConfig.json', 'r') as file:
 
 # 앱을 종료하고 다시 시작합니다.
 def restart_app(driver):
-    driver.terminate_app(config.app_package)
-    driver.activate_app(config.app_package)
+    driver.terminate_app(config['app_package'])
+    driver.activate_app(config['app_package'])
