@@ -9,20 +9,20 @@ import time
 import json
 
 # 파일 경로 지정
-with open('config/youtubeConfig.json', 'r') as file:
+with open("./config/youtubeConfig.json", "r") as file:
     config = json.load(file)
 
 # Appium 설정
 options = UiAutomator2Options()
-options.platform_name = config.platform_name
-options.device_name = config.device_name
-options.app_package = config.app_package
-options.app_activity = config.app_activity
+options.platform_name = config["platform_name"]
+options.device_name = config["device_name"]
+options.app_package = config["app_package"]
+options.app_activity = config["app_activity"]
 options.no_reset = True
 options.full_reset = False
 
 # Appium 서버 연결
-driver = webdriver.Remote(config.url, options=options)
+driver = webdriver.Remote(config["url"], options=options)
 
 # 앱이 실행될 때까지 대기
 wait = WebDriverWait(driver, 10)
@@ -30,24 +30,30 @@ driver.implicitly_wait(10)
 print("Youtube 앱 실행")
 
 # 1) Shorts 탭 클릭
-shortsTab = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Shorts')
+shortsTab = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Shorts")
 shortsTab.click()
 
 # 2) Go to channel 버튼 클릭
-goToChannelButton = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Go to channel')
+goToChannelButton = driver.find_element(
+    by=AppiumBy.ACCESSIBILITY_ID, value="Go to channel"
+)
 goToChannelButton.click()
 
 # 3) Search 버튼 클릭
-searchButton = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Search')
+searchButton = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Search")
 searchButton.click()
 
 # 검색창에 "Appium Tutorial" 입력 후 검색 수행
-searchBox = driver.find_element(by=AppiumBy.ID, value='com.google.android.youtube:id/search_edit_text')
-searchBox.send_keys("blackpink") 
+searchBox = driver.find_element(
+    by=AppiumBy.ID, value="com.google.android.youtube:id/search_edit_text"
+)
+searchBox.send_keys("blackpink")
 driver.press_keycode(66)
 
 # 검색결과 노출될 때까지 대기
-result_goToChannelButton = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Go to channel')
+result_goToChannelButton = driver.find_element(
+    by=AppiumBy.ACCESSIBILITY_ID, value="Go to channel"
+)
 # driver.find_element(by=AppiumBy.XPATH, value=xpath)
 # WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
 
