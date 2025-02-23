@@ -43,7 +43,7 @@ goToChannelButton.click()
 searchButton = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Search")
 searchButton.click()
 
-# 4) 검색창에 "Appium Tutorial" 입력 후 엔터 
+# 4) 검색창에 "blackpink" 입력 후 엔터 
 searchBox = driver.find_element(
     by=AppiumBy.ID, value="com.google.android.youtube:id/search_edit_text"
 )
@@ -54,6 +54,7 @@ driver.press_keycode(66)
 result_goToChannelButton = wait.until(
     EC.presence_of_element_located(by=AppiumBy.ACCESSIBILITY_ID, value="Go to channel")
 )
+# driver.assert_extension_exists
 print("검색결과 노출")
 
 # 6) 몇 초 대기 후 종료
