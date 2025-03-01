@@ -1,6 +1,10 @@
 # Appium(python)
 
-## 테스트 환경 준비
+## 테스트 환경
+- macOS 13.7.2
+- Android 15.0
+
+## 테스트 환경 준비 
 
 1. npm 설치
 ```
@@ -22,9 +26,9 @@ npm install -g appium
 pip install -r requirements.txt
 ```
 
-5. Android/iOS 디바이스 준비
+5. Android 디바이스 준비
 
-6. ./config/{config}.json 파일 준비 (아래는 예시)
+6. `./config/{config}.json` 파일 준비 (아래는 예시)
 ```
 {
     "url": "http://localhost:4723/wd/hub",
