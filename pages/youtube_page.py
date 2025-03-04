@@ -49,3 +49,19 @@ class YouTubePage:
         ).find_element(
             AppiumBy.XPATH, "//android.view.ViewGroup[@content-desc][1]"
         ).click()
+
+    def share_video(self):
+        shareButton = self.wait.until(
+            EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, "Share"))
+        )
+        shareButton.click()
+        copyLinkButton = self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    AppiumBy.XPATH,
+                    "//android.support.v7.widget.RecyclerView[@resource-id='com.google.android.youtube:id/bottom_sheet_list']/android.view.ViewGroup/android.view.ViewGroup[2]",
+                )
+            )
+        )
+        copyLinkButton.click()
+
