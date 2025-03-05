@@ -2,11 +2,13 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 class YouTubePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 20)
+
+    def go_back(self):
+        self.driver.press_keycode(4)
 
     def allowPermission(self):
         self.driver.find_element(by=AppiumBy.ID, value="com.android.permissioncontroller:id/permission_allow_button").click()
@@ -34,7 +36,7 @@ class YouTubePage:
             EC.presence_of_element_located(
                 (
                     AppiumBy.XPATH,
-                    "//android.view.ViewGroup[@content-desc='View Channel']",
+                    "//android.view.ViewGroup[@content-desc='View Channel']"
                 )
             )
         )
@@ -43,25 +45,42 @@ class YouTubePage:
     def click_channel_tab(self, tab):
         self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value=tab).click()
 
-    def click_first_video(self):
+    def click_first_video_home(self):
+        self.driver.find_element(AppiumBy.XPATH, "//*[contains(@content-desc, 'play video')][1]").click()
+
+    def click_first_video_videos(self):
         self.driver.find_element(
             AppiumBy.ID, "com.google.android.youtube:id/results"
         ).find_element(
-            AppiumBy.XPATH, "//android.view.ViewGroup[@content-desc][1]"
+            AppiumBy.XPATH, "//*[contains(@content-desc, 'play video')][1]"
         ).click()
 
     def share_video(self):
-        shareButton = self.wait.until(
-            EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, "Share"))
-        )
-        shareButton.click()
-        copyLinkButton = self.wait.until(
-            EC.presence_of_element_located(
-                (
-                    AppiumBy.XPATH,
-                    "//android.support.v7.widget.RecyclerView[@resource-id='com.google.android.youtube:id/bottom_sheet_list']/android.view.ViewGroup/android.view.ViewGroup[2]",
-                )
-            )
-        )
-        copyLinkButton.click()
+        print(self.driver.page_source)
+        self.driver.find_element(
+            by=AppiumBy.ACCESSIBILITY_ID, value="Share"
+        ).click()
+        self.driver.find_element(
+            by=AppiumBy.XPATH, value="//android.support.v7.widget.RecyclerView[@resource-id='com.google.android.youtube:id/bottom_sheet_list']/android.view.ViewGroup/android.view.ViewGroup[2]"
+        ).click()
+        # shareButton = self.wait.until(
+        #     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, "Share"))
+        # )
+        # shareButton.click()
+        # copyLinkButton = self.wait.until(
+        #     EC.presence_of_element_located(
+        #         (
+        #             AppiumBy.XPATH,
+        #             "//android.support.v7.widget.RecyclerView[@resource-id='com.google.android.youtube:id/bottom_sheet_list']/android.view.ViewGroup/android.view.ViewGroup[2]",
+        #         )
+        #     )
+        # )
+        # copyLinkButton.click()
+
+    def close_miniplayer(self):
+        self.driver.find_element(
+            by=AppiumBy.ACCESSIBILITY_ID, value="Close miniplayer"
+        ).click()
+
+
 
