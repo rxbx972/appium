@@ -1,4 +1,4 @@
-# Appium(python)
+# Appium(python)을 활용한 안드로이드 앱 자동화
 
 - 트러블 슈팅 기록 : https://typical-meal-647.notion.site/1a0d164a50b4804b882ef6258a26f223
 
