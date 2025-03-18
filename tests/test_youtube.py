@@ -27,7 +27,7 @@ print("YouTube 앱 실행됨")
 youtube_page = YouTubePage(driver)
 
 # youtube_page.allowPermission()
-youtube_page.click_shorts_tab()
+youtube_page.click_tab("Shorts")
 youtube_page.click_go_to_channel()
 youtube_page.click_search_button()
 youtube_page.search_channel("blackpink")

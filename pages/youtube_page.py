@@ -20,8 +20,8 @@ class YouTubePage:
             value="com.android.permissioncontroller:id/permission_allow_button",
         ).click()
 
-    def click_shorts_tab(self):
-        self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Shorts").click()
+    def click_tab(self, tab):
+        self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value=tab).click()
 
     def click_go_to_channel(self):
         self.driver.find_element(
