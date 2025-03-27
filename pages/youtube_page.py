@@ -12,7 +12,6 @@ class YouTubePage:
 
     def go_back(self):
         self.driver.press_keycode(4)
-        print("* 뒤로가기")
 
     def allowPermission(self):
         self.driver.find_element(
@@ -51,7 +50,6 @@ class YouTubePage:
         self.driver.find_element(
             AppiumBy.XPATH, "//*[contains(@content-desc, 'play video')][1]"
         ).click()
-        print("* 첫번째 비디오 클릭")
 
     def share_video(self):
         time.sleep(2)
@@ -60,20 +58,18 @@ class YouTubePage:
                 EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, "Share"))
             )
             shareButton.click()
-            print("* 비디오 공유 버튼 클릭")
         except TimeoutException:
-            skipButton = self.wait.until(
+            adSkipButton = self.wait.until(
                 EC.presence_of_element_located(
                     (AppiumBy.ID, "com.google.android.youtube:id/skip_ad_button")
                 )
             )
-            skipButton.click()
+            adSkipButton.click()
 
             shareButton = self.wait.until(
                 EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, "Share"))
             )
             shareButton.click()
-            print("* 광고 스킵 후 비디오 공유 버튼 클릭")
         finally:
             copyLinkButton = self.wait.until(
                 EC.presence_of_element_located(
@@ -84,10 +80,8 @@ class YouTubePage:
                 )
             )
             copyLinkButton.click()
-            print("* 링크 복사 버튼 클릭")
 
     def close_miniplayer(self):
         self.driver.find_element(
             by=AppiumBy.ACCESSIBILITY_ID, value="Close miniplayer"
         ).click()
-        print("* 미니 플레이어 닫기")
